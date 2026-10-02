@@ -1,14 +1,10 @@
 services:
-  - type: static
+  - type: web
     name: pulse-web
     runtime: static
     rootDir: apps/web
     buildCommand: npm install && npm run build
     staticPublishPath: dist
-    headers:
-      - path: /*
-        name: X-Frame-Options
-        value: SAMEORIGIN
     envVars:
       - key: VITE_API_BASE_URL
         value: https://pulse-api.onrender.com
@@ -42,9 +38,8 @@ services:
           name: pulse-db
           property: connectionString
 
-  - type: postgres
-    name: pulse-db
+databases:
+  - name: pulse-db
+    databaseName: pulse
+    user: pulse
     plan: free
-    region: oregon
-    postgresMajorVersion: "16"
-    ipAllowList: []
