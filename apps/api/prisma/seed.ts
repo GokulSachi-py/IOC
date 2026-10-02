@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
+import { builtInExercises } from './exerciseCatalog';
 
 const prisma = new PrismaClient();
 
@@ -15,40 +16,8 @@ async function main() {
   await prisma.exercise.deleteMany();
   await prisma.user.deleteMany();
 
-  // 1. Built-in exercises
-  const exercisesData = [
-    { name: 'Barbell Bench Press', muscle_group: 'Chest', equipment: 'Barbell' },
-    { name: 'Incline Dumbbell Press', muscle_group: 'Chest', equipment: 'Dumbbell' },
-    { name: 'Cable Chest Flyes', muscle_group: 'Chest', equipment: 'Cable' },
-    { name: 'Push Ups', muscle_group: 'Chest', equipment: 'Bodyweight' },
-    
-    { name: 'Barbell Deadlift', muscle_group: 'Back', equipment: 'Barbell' },
-    { name: 'Lat Pulldown', muscle_group: 'Back', equipment: 'Cable' },
-    { name: 'Barbell Bent Over Row', muscle_group: 'Back', equipment: 'Barbell' },
-    { name: 'Pull-ups', muscle_group: 'Back', equipment: 'Bodyweight' },
-    { name: 'Seated Cable Row', muscle_group: 'Back', equipment: 'Cable' },
-    
-    { name: 'Barbell Back Squat', muscle_group: 'Legs', equipment: 'Barbell' },
-    { name: 'Leg Press', muscle_group: 'Legs', equipment: 'Machine' },
-    { name: 'Romanian Deadlift', muscle_group: 'Legs', equipment: 'Barbell' },
-    { name: 'Leg Extension', muscle_group: 'Legs', equipment: 'Machine' },
-    { name: 'Lying Leg Curl', muscle_group: 'Legs', equipment: 'Machine' },
-    
-    { name: 'Overhead Barbell Press', muscle_group: 'Shoulders', equipment: 'Barbell' },
-    { name: 'Dumbbell Lateral Raise', muscle_group: 'Shoulders', equipment: 'Dumbbell' },
-    { name: 'Face Pulls', muscle_group: 'Shoulders', equipment: 'Cable' },
-    
-    { name: 'Dumbbell Bicep Curl', muscle_group: 'Arms', equipment: 'Dumbbell' },
-    { name: 'Tricep Rope Pushdown', muscle_group: 'Arms', equipment: 'Cable' },
-    { name: 'EZ Bar Skullcrusher', muscle_group: 'Arms', equipment: 'Barbell' },
-    { name: 'Hammer Curls', muscle_group: 'Arms', equipment: 'Dumbbell' },
-    
-    { name: 'Hanging Leg Raise', muscle_group: 'Core', equipment: 'Bodyweight' },
-    { name: 'Ab Wheel Rollout', muscle_group: 'Core', equipment: 'Other' }
-  ];
-
   const createdExercises = await Promise.all(
-    exercisesData.map(ex => prisma.exercise.create({ data: ex }))
+    builtInExercises.map(ex => prisma.exercise.create({ data: ex }))
   );
 
   const exMap = new Map<string, string>();

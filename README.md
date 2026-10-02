@@ -29,11 +29,12 @@ A full-stack social gym workout logging platform modeled after Hevy. Log workout
 ```bash
 docker compose up --build -d
 ```
-3. On a fresh database only, add the demo account and sample workouts:
+The API automatically adds any missing built-in exercises without deleting existing accounts or workouts.
+3. On a fresh database only, optionally add the demo account, sample workouts, and social data:
 ```bash
 docker compose exec api npm run db:seed
 ```
-The seed script clears and recreates all database records. Do not run it again after users have created data.
+The full demo seed script clears and recreates all database records. Do not run it after users have created data. The automatic exercise-catalog initializer is safe to run on every API start.
 4. Open `http://localhost:8080`. The web container serves the frontend and proxies `/api/*` to the API; the API and database are not exposed publicly.
 
 ### Local Source Development

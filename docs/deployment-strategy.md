@@ -36,7 +36,7 @@ The current seed script deletes and recreates database records. Run it only on a
 
 ## Startup, Schema, and Release
 
-The API container runs `npx prisma db push` before starting the Node server. This creates/synchronizes the schema for an MVP and is not a reviewed, versioned migration workflow. No migration history is checked in. Before production data matters, introduce Prisma migrations, review them in CI, and run `prisma migrate deploy` as a controlled release step instead of applying `db push` on each start.
+The API container runs `npx prisma db push` and the idempotent built-in exercise catalog initializer before starting the Node server. This creates/synchronizes the schema for an MVP and adds only missing built-in exercises; it does not seed demo accounts or delete existing data. It is not a reviewed, versioned migration workflow. No migration history is checked in. Before production data matters, introduce Prisma migrations, review them in CI, and run `prisma migrate deploy` as a controlled release step instead of applying `db push` on each start.
 
 The database volume persists across container replacement. `docker compose down` preserves named volumes by default; `docker compose down -v` removes the database volume and should be treated as destructive. Back up important data before schema changes or teardown.
 
