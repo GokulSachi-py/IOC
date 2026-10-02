@@ -1,4 +1,4 @@
-# Hevy Clone - Social Gym Workout Tracker
+# Pulse - Social Gym Workout Tracker
 
 A full-stack social gym workout logging platform modeled after Hevy. Log workouts, track trained days on a monthly calendar, view exercise progress, and share your workout achievements with followers in a social feed.
 
