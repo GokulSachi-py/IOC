@@ -6,7 +6,7 @@ services:
     staticPublishPath: apps/web/dist
     envVars:
       - key: VITE_API_BASE_URL
-        value: https://pulse-api.onrender.com
+        value: https://pulse-api-mbhu.onrender.com
 
   - type: web
     name: pulse-api
@@ -22,7 +22,7 @@ services:
       - key: JWT_SECRET
         generateValue: true
       - key: CLIENT_URL
-        value: https://pulse-web.onrender.com
+        value: https://pulse-web-j59m.onrender.com
       - key: COOKIE_SAME_SITE
         value: none
       - key: COOKIE_SECURE
